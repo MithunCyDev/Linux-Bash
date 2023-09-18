@@ -46,3 +46,25 @@ result=$(echo "scale=3; $expression" | bc)
 
 # Display the result rounded to 3 decimal places
 echo "Result: $result"
+
+
+#!/bin/bash
+
+# Read the mathematical expression from the user
+read -p "Enter a mathematical expression: " expression
+
+# Replace ^ with **
+expression=$(echo "$expression" | sed 's/\^/**/g')
+
+# Remove spaces around operators
+expression=$(echo "$expression" | sed 's/ \([-+*/]\) /\1/g')
+
+# Calculate the result with higher precision
+result=$(echo "scale=10; $expression" | bc)
+
+# Round the result to 3 decimal places
+rounded_result=$(printf "%.3f\n" $result)
+
+# Display the result
+echo $rounded_result
+
