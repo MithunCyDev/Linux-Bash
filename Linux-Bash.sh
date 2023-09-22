@@ -68,3 +68,25 @@ rounded_result=$(printf "%.3f\n" $result)
 # Display the result
 echo $rounded_result
 
+
+#!/bin/bash
+
+# Read the number of integers (N)
+read N
+
+# Initialize a variable to hold the sum
+sum=0
+
+# Loop to read the integers and calculate the sum
+for ((i=0; i<N; i++))
+do
+    read num
+    sum=$((sum + num))
+done
+
+# Calculate the average
+average=$(echo "scale=3; $sum / $N" | bc)
+
+# Print the average
+printf "%.3f\n" $average
+
